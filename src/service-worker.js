@@ -12,6 +12,9 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
 // App Shell
 workbox.routing.registerNavigationRoute('/index.html')
 
+// Google Analytics Offline
+workbox.googleAnalytics.initialize()
+
 // La API usa Stale While Revalidate para mayor velocidad
 workbox.routing.registerRoute(/^https?:\/\/www.themealdb.com\/api\/.*/, workbox.strategies.staleWhileRevalidate(),
  'GET')
@@ -28,7 +31,7 @@ workbox.routing.registerRoute(/^https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)
   }),
   'GET')
 
-// Todo lo demás usa Network First
+// Todo lo demás usa Network First Siempre va de ultima esta opcion
 workbox.routing.registerRoute(/^https?.*/,
   workbox.strategies.networkFirst(), 'GET')
 
